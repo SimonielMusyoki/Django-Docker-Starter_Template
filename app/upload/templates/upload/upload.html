@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% block content %}
+    <form
+      action="{% url 'upload' %}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <input type="file" name="image_file" />
+      <input type="submit" name="submit" />
+    </form>
+    {% if image_url %}
+    <p>File uploaded at: <a href="{{ image_url}}">{{ image_url}}</a></p>
+    {% endif %} {% endblock content %}
+  </body>
+</html>
